@@ -108,3 +108,20 @@ class Grafo:
             if not self.existe_arco(u, v):
                 peso = round(random.uniform(1.0, 25.0), 1)
                 self.agregar_arco(u, v, peso)
+
+    def obtener_aristas_de_nodo(self, nodo_id):
+        """Devuelve todas las aristas conectadas a un nodo específico."""
+        res = []
+        for a in self.aristas:
+            if a.nodo1.id == nodo_id or a.nodo2.id == nodo_id:
+                res.append(a)
+        return res
+
+    def obtener_arista_entre(self, id1, id2):
+        """Devuelve la arista que conecta dos nodos por sus IDs."""
+        for a in self.aristas:
+            if (a.nodo1.id == id1 and a.nodo2.id == id2) or (
+                    a.nodo1.id == id2 and a.nodo2.id == id1
+            ):
+                return a
+        return None
